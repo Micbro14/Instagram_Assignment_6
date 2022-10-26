@@ -68,6 +68,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         //Create the comment
         let comment = PFObject(className: "Comments")
+        
         comment["text"] = text
         comment["post"] = selectedPost
         comment["author"] = PFUser.current()!
@@ -75,7 +76,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
         selectedPost.add(comment, forKey: "comments")
         selectedPost.saveInBackground{(success,error) in
             if success{
-                print("Comment Savede")
+                print("Comment Saved")
             }else{
                 print("Error saving comment")
             }
@@ -111,7 +112,12 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let user = post["author"] as! PFUser
             cell.usernameLabel.text = user.username
-            cell.captionLabel.text = (post["caption"] as! String)
+        
+            var text:String? = post["caption"] as! String?
+            
+            cell.captionLabel.text = text
+            
+            
             let imageFile = post["image"] as! PFFileObject
             let urlString = imageFile.url!
             let url = URL(string: urlString)!
