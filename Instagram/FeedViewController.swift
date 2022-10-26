@@ -9,6 +9,7 @@ import UIKit
 import Parse
 import AlamofireImage
 import MessageInputBar
+import Foundation
 
 class FeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessageInputBarDelegate {
     
@@ -132,6 +133,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let user = comment["author"] as! PFUser
             cell.nameLabel.text = user.username
+            cell.nameLabel.textColor = UIColor.purple
             
             return cell
         }else{
