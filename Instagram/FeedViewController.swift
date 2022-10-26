@@ -78,7 +78,7 @@ class FeedViewController: UIViewController, UITableViewDelegate, UITableViewData
             if success{
                 print("Comment Saved")
             }else{
-                print("Error saving comment")
+                print("Error while saving comment")
             }
         }
         tableView.reloadData()
